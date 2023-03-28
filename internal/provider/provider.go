@@ -38,7 +38,7 @@ func (p *k3seProvider) DataSources(ctx context.Context) []func() datasource.Data
 
 func (p *k3seProvider) Resources(ctx context.Context) []func() resource.Resource {
 	return []func() resource.Resource{
-		NewCluster,
+		NewClusterResource,
 	}
 }
 
