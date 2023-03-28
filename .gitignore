@@ -1,7 +1,7 @@
 .DS_Store
 vendor
 
-terraform-provider-hashicups
+terraform-provider-k3se
 bin
 
 # Local .terraform directories
@@ -36,5 +36,6 @@ override.tf.json
 
 # Ignore CLI configuration files
 .terraformrc
+!config/.terraformrc
 terraform.rc
 terraform
