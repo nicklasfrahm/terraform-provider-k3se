@@ -27,6 +27,18 @@ func (r *clusterResource) Metadata(_ context.Context, req resource.MetadataReque
 
 // Schema defines the schema for the resource.
 func (r *clusterResource) Schema(ctx context.Context, req resource.SchemaRequest, resp *resource.SchemaResponse) {
+	sshAttributes := map[string]schema.Attribute{
+		"host": schema.StringAttribute{
+			Required: true,
+		},
+		"user": schema.StringAttribute{
+			Optional: true,
+		},
+		"key_file": schema.StringAttribute{
+			Optional: true,
+		},
+	}
+
 	serverSchema := schema.SingleNestedAttribute{
 		Optional: true,
 		Attributes: map[string]schema.Attribute{
@@ -74,22 +86,16 @@ func (r *clusterResource) Schema(ctx context.Context, req resource.SchemaRequest
 							Required: true,
 						},
 						"ssh": schema.SingleNestedAttribute{
-							Required: true,
-							Attributes: map[string]schema.Attribute{
-								"host": schema.StringAttribute{
-									Required: true,
-								},
-								"user": schema.StringAttribute{
-									Optional: true,
-								},
-								"key_file": schema.StringAttribute{
-									Optional: true,
-								},
-							},
+							Required:   true,
+							Attributes: sshAttributes,
 						},
 						"server": serverSchema,
 					},
 				},
+			},
+			"ssh_proxy": schema.SingleNestedAttribute{
+				Optional:   true,
+				Attributes: sshAttributes,
 			},
 		},
 	}
