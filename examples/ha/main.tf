@@ -21,14 +21,14 @@ resource "k3se_cluster" "ha" {
       # It is highly recommended to always specify this option as it
       # is used to determine the server URL of the cluster.
       tls_san = [
-        "192.168.56.11"
+        "192.168.56.11",
       ]
       write_kubeconfig_mode = "644"
       # IMPORTANT: Setting this options is required if your
       # HA cluster nodes have multiple network interfaces.
       flannel_iface = "enp0s3"
       node_label = [
-        "example=ha"
+        "example=ha",
       ]
     }
   }
@@ -44,15 +44,15 @@ resource "k3se_cluster" "ha" {
       }
       server = {
         node_label = [
-          "mylabel=a"
+          "mylabel=a",
         ]
         # IMPORTANT: Setting this options is required if your
         # HA cluster nodes have multiple network interfaces.
         node_ip = [
-          "192.168.56.11"
+          "192.168.56.11",
         ]
         node_external_ip = [
-          "192.168.56.11"
+          "192.168.56.11",
         ]
       }
     },
@@ -65,15 +65,15 @@ resource "k3se_cluster" "ha" {
       }
       server = {
         node_label = [
-          "mylabel=b"
+          "mylabel=b",
         ]
         # IMPORTANT: Setting this options is required if your
         # HA cluster nodes have multiple network interfaces.
         node_ip = [
-          "192.168.56.12"
+          "192.168.56.12",
         ]
         node_external_ip = [
-          "192.168.56.12"
+          "192.168.56.12",
         ]
       }
     },
@@ -86,17 +86,17 @@ resource "k3se_cluster" "ha" {
       }
       server = {
         node_label = [
-          "mylabel=c"
+          "mylabel=c",
         ]
         # IMPORTANT: Setting this options is required if your
         # HA cluster nodes have multiple network interfaces.
         node_ip = [
-          "192.168.56.13"
+          "192.168.56.13",
         ]
         node_external_ip = [
-          "192.168.56.13"
+          "192.168.56.13",
         ]
       }
-    }
+    },
   ]
 }

@@ -21,11 +21,11 @@ resource "k3se_cluster" "standalone" {
       # It is highly recommended to always specify this option as it
       # is used to determine the server URL of the cluster.
       tls_san = [
-        "192.168.56.11"
+        "192.168.56.11",
       ]
       write_kubeconfig_mode = "644"
       node_label = [
-        "example=standalone"
+        "example=standalone",
       ]
     }
   }
@@ -41,9 +41,9 @@ resource "k3se_cluster" "standalone" {
       }
       server = {
         node_label = [
-          "mylabel=a"
+          "mylabel=a",
         ]
       }
-    }
+    },
   ]
 }
