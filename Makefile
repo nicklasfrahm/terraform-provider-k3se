@@ -14,6 +14,7 @@ plan: install
 	@mv ~/.terraformrc ~/.terraformrc.bak 2> /dev/null || true
 	@envsubst < config/.terraformrc > ~/.terraformrc
 	terraform -chdir=examples/standalone plan
+	terraform -chdir=examples/ha plan
 	@rm ~/.terraformrc
 	@mv ~/.terraformrc.bak ~/.terraformrc 2> /dev/null || true
 
