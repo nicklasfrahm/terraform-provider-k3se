@@ -39,6 +39,16 @@ func (r *clusterResource) Schema(ctx context.Context, req resource.SchemaRequest
 		},
 	}
 
+	agentSchema := schema.SingleNestedAttribute{
+		Optional: true,
+		Attributes: map[string]schema.Attribute{
+			"node_label": schema.ListAttribute{
+				Optional:    true,
+				ElementType: types.StringType,
+			},
+		},
+	}
+
 	serverSchema := schema.SingleNestedAttribute{
 		Optional: true,
 		Attributes: map[string]schema.Attribute{
@@ -90,6 +100,7 @@ func (r *clusterResource) Schema(ctx context.Context, req resource.SchemaRequest
 							Attributes: sshAttributes,
 						},
 						"server": serverSchema,
+						"agent":  agentSchema,
 					},
 				},
 			},
