@@ -8,7 +8,7 @@ terraform {
 
 provider "k3se" {}
 
-resource "k3se_cluster" "standalone" {
+resource "k3se_cluster" "ha" {
   # Version may either be a specific k3s version or a release channel
   # as listed here: https://update.k3s.io/v1-release/channels
   version = "stable"

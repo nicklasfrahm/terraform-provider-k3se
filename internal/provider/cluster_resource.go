@@ -27,6 +27,34 @@ func (r *clusterResource) Metadata(_ context.Context, req resource.MetadataReque
 
 // Schema defines the schema for the resource.
 func (r *clusterResource) Schema(ctx context.Context, req resource.SchemaRequest, resp *resource.SchemaResponse) {
+	serverSchema := schema.SingleNestedAttribute{
+		Optional: true,
+		Attributes: map[string]schema.Attribute{
+			"tls_san": schema.ListAttribute{
+				Optional:    true,
+				ElementType: types.StringType,
+			},
+			"write_kubeconfig_mode": schema.StringAttribute{
+				Optional: true,
+			},
+			"node_label": schema.ListAttribute{
+				Optional:    true,
+				ElementType: types.StringType,
+			},
+			"node_ip": schema.ListAttribute{
+				Optional:    true,
+				ElementType: types.StringType,
+			},
+			"node_external_ip": schema.ListAttribute{
+				Optional:    true,
+				ElementType: types.StringType,
+			},
+			"flannel_iface": schema.StringAttribute{
+				Optional: true,
+			},
+		},
+	}
+
 	resp.Schema = schema.Schema{
 		Attributes: map[string]schema.Attribute{
 			"version": schema.StringAttribute{
@@ -35,22 +63,7 @@ func (r *clusterResource) Schema(ctx context.Context, req resource.SchemaRequest
 			"cluster": schema.SingleNestedAttribute{
 				Optional: true,
 				Attributes: map[string]schema.Attribute{
-					"server": schema.SingleNestedAttribute{
-						Optional: true,
-						Attributes: map[string]schema.Attribute{
-							"tls_san": schema.ListAttribute{
-								Optional:    true,
-								ElementType: types.StringType,
-							},
-							"write_kubeconfig_mode": schema.StringAttribute{
-								Optional: true,
-							},
-							"node_label": schema.ListAttribute{
-								Optional:    true,
-								ElementType: types.StringType,
-							},
-						},
-					},
+					"server": serverSchema,
 				},
 			},
 			"nodes": schema.ListNestedAttribute{
@@ -74,15 +87,7 @@ func (r *clusterResource) Schema(ctx context.Context, req resource.SchemaRequest
 								},
 							},
 						},
-						"server": schema.SingleNestedAttribute{
-							Required: true,
-							Attributes: map[string]schema.Attribute{
-								"node_label": schema.ListAttribute{
-									Optional:    true,
-									ElementType: types.StringType,
-								},
-							},
-						},
+						"server": serverSchema,
 					},
 				},
 			},
