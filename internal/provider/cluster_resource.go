@@ -72,14 +72,14 @@ func (r *clusterResource) Schema(ctx context.Context, req resource.SchemaRequest
 								"key_file": schema.StringAttribute{
 									Optional: true,
 								},
-								"server": schema.SingleNestedAttribute{
-									Required: true,
-									Attributes: map[string]schema.Attribute{
-										"node_label": schema.ListAttribute{
-											Optional:    true,
-											ElementType: types.StringType,
-										},
-									},
+							},
+						},
+						"server": schema.SingleNestedAttribute{
+							Required: true,
+							Attributes: map[string]schema.Attribute{
+								"node_label": schema.ListAttribute{
+									Optional:    true,
+									ElementType: types.StringType,
 								},
 							},
 						},

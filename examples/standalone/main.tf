@@ -38,11 +38,11 @@ resource "k3se_cluster" "standalone" {
         host     = "192.168.56.11"
         user     = "vagrant"
         key_file = "~/.ssh/id_ed25519"
-        server = {
-          node_label = [
-            "mylabel=a"
-          ]
-        }
+      }
+      server = {
+        node_label = [
+          "mylabel=a"
+        ]
       }
     }
   ]
